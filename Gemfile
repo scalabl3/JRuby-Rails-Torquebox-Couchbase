@@ -10,6 +10,8 @@ gem 'activerecord-jdbcsqlite3-adapter'
 gem 'jruby-openssl'
 gem 'json'
 gem 'jcouchbase'
+gem 'bootstrap-sass'
+gem 'bourbon'
 
 # Gems used only for assets and not required
 # in production environments by default.
