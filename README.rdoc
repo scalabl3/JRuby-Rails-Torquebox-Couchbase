@@ -16,17 +16,17 @@ If you are new to this, you pretty much have to do this exactly to get everythin
 
 === Install Torquebox Gem
 
-Install torquebox via RVM and jruby gem install
+Install Torquebox-Server via RVM and jruby gem install
 
     $ jruby -S gem install torquebox-server 
 
-=== Install Rails3 using JRuby Template
+=== Install Rails3 for JRuby
 
     $ jruby -S gem install rails --pre --no-rdoc --no-ri
 
-=== Create Rails Project
+=== Create Your Rails Project
 
-Use the torquebox template for creating a new rails app :)
+Use the torquebox template for creating a new rails app :), it puts it in a subfolder just like normal rails new myapp
 
     $ torquebox rails myapp
 
