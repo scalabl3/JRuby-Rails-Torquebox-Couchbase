@@ -1,0 +1,99 @@
+= Important Notes
+
+If you are new to this, you pretty much have to do this exactly to get everything to work. If you miss something you'll run into problems!
+
+= Setup all the Basics
+
+=== Installing JRuby
+
+    $ rvm get stable && rvm install jruby
+
+=== Setting up Torquebox Gemset
+
+    $ rvm use jruby
+    $ rvm gemset create torquebox
+    $ rvm jruby-1.6.7.2@torquebox
+
+=== Install Torquebox Gem
+
+Install torquebox via RVM and jruby gem install
+
+    $ jruby -S gem install torquebox-server 
+
+=== Install Rails3 using JRuby Template
+
+    $ jruby -S gem install rails --pre --no-rdoc --no-ri
+
+=== Create Rails Project
+
+Use the torquebox template for creating a new rails app :)
+
+    $ torquebox rails myapp
+
+=== Change to Rails App Directory
+
+    $ cd myapp
+    
+=== Do a Quick Test, this should load WEBrick
+
+    $ jruby script/rails server
+
+You should get something like this:
+    
+    => Booting WEBrick
+    => Rails 3.2.8.rc2 application starting in development on http://0.0.0.0:3000
+    => Call with -d to detach
+    => Ctrl-C to shutdown server
+    [2012-08-27 21:19:01] INFO  WEBrick 1.3.1
+    [2012-08-27 21:19:01] INFO  ruby 1.9.3 (2012-08-07) [java]
+    [2012-08-27 21:19:01] INFO  WEBrick::HTTPServer#start: pid=31454 port=3000
+
+=== Verify ENV vars
+
+Run this and verify that your ENV vars are set properly, if not torquebox deploy/undeploy won't work
+
+    $ torquebox env
+
+Make sure your environment variables look something like this, your username instead of "username"
+
+  TORQUEBOX_HOME=/Users/username/.rvm/gems/jruby-1.6.7.2@torquebox/gems/torquebox-server-2.1.1-java
+  JBOSS_HOME=/Users/users/.rvm/gems/jruby-1.6.7.2@torquebox/gems/torquebox-server-2.1.1-java/jboss
+  JRUBY_HOME=/Users/users/.rvm/rubies/jruby-1.6.7.2
+  
+Set your JRUBY Options: run with 1.9.x, turn on jit logging (turn off to make quieter in term)
+
+    JRUBY_OPTS="--1.9 -Xjit.logging=true" 
+    JRUBY_OPTS="--1.9 -Xjit.logging=false"
+
+=== If you added Gems Bundle Install to make sure we're all set up, if not torquebox rails already handled this
+
+    $ jruby -S bundle install
+    
+=== Setup to Run on Torquebox
+
+    $ torquebox deploy .
+
+=== Test Running on Torquebox
+
+    $ torquebox run
+    Browse localhost:8080 and there it is!
+
+**NOTE: remember to run "$ rvm jruby-1.6.7.2@torquebox" if you leave the folder (with a .rvmrc) and come back, or you can set up your own .rvmrc but make sure you don't lose your ENV vars or have them reset**
+
+= Ok, now we got all the basics down, on to Couchbase
+
+If you are still running app in Torquebox, CTRL-C to get out and continue
+
+=== Install Couchbase JRuby Gem
+
+    $ jruby -S gem install jcouchbase
+    
+=== Add to Gemfile
+
+    gem 'jcouchbase'
+    
+=== Do a Bundle install
+
+    $ jruby -S bundle install
+
+Voila!
